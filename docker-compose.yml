@@ -1,0 +1,57 @@
+version: "3"
+services:
+  web_service:
+    build:
+      context: ./web_service
+      dockerfile: Dockerfile
+    container_name: web_service
+    ports:
+      - ${WEB_SERVICE_PORT}:${WEB_SERVICE_PORT}
+    restart: always
+    volumes:
+      - ./web_service:/app
+      - /app/node_modules
+    env_file:
+      - ./web_service/.env
+
+  number_validator_service:
+    build:
+      context: ./number_validator_service
+      dockerfile: Dockerfile
+    container_name: number_validator_service
+    ports:
+      - ${NUMBER_VALIDATOR_SERVICE_PORT}:${NUMBER_VALIDATOR_SERVICE_PORT}
+    restart: always
+    volumes:
+      - ./number_validator_service:/app
+      - /app/node_modules
+    env_file:
+      - ./number_validator_service/.env
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: DockerFile
+    container_name: frontend
+    ports:
+      - ${FRONTEND_PORT}:${FRONTEND_PORT}
+    restart: always
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+
+  nginx-proxy:
+    build:
+      context: ./proxy
+      dockerfile: Dockerfile
+    container_name: proxycontainer
+    environment:
+      - WEB_SERVICE_PORT=${WEB_SERVICE_PORT}
+      - NUMBER_VALIDATOR_SERVICE_PORT=${NUMBER_VALIDATOR_SERVICE_PORT}
+      - FRONTEND_PORT=${FRONTEND_PORT}
+    depends_on:
+      - web_service
+      - number_validator_service
+      - frontend
+    ports:
+      - "80:80"
