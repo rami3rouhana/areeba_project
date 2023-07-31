@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import validateNumber from './routes/validate_number.mjs'
 
 const app = express();
 
@@ -21,5 +22,7 @@ const corsOptions = {
     res.header('Accept-Encoding','gzip, deflate, br');
     next();
   });
+
+app.use('/validateNumber', validateNumber);
 
 export default app;
