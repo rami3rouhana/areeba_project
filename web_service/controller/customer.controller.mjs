@@ -46,17 +46,14 @@ export const updateCustomer = async (req, res) => {
 
   const updateCustomerPayload = {};
 
-  if (name) {
+  if (name) 
     updateCustomerPayload.name = name;
-  }
 
-  if (address) {
+  if (address) 
     updateCustomerPayload.address = address;
-  }
 
-  if (mobileNumber) {
+  if (mobileNumber) 
     updateCustomerPayload.mobileNumber = mobileNumber;
-  }
 
   try {
     const updatedCustomer = await Customer.findByIdAndUpdate(
