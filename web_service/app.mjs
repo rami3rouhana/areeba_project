@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import customerRoutes from './routes/customer.mjs';
 
 const app = express();
 
@@ -21,5 +22,7 @@ const corsOptions = {
     res.header('Accept-Encoding','gzip, deflate, br');
     next();
   });
+
+  app.use('/customers', customerRoutes);
 
 export default app;
