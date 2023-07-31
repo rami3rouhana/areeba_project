@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const api = axios.create({
-    baseURL: 'http://localhost:3000', 
+    baseURL: 'http://localhost/web_service', 
   });
   
 const CustomerTable = () => {
