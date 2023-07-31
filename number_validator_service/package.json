@@ -1,0 +1,15 @@
+{
+  "name": "number_validator_service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.mjs",
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ramy Rouhana",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
